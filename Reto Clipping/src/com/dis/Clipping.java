@@ -13,6 +13,8 @@ import java.util.Random;
 
 public class Clipping extends JPanel {
 
+    int cx0, cy0, cx1, cy1;
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -34,12 +36,60 @@ public class Clipping extends JPanel {
             int y1 = Math.abs(r.nextInt()) % h;
             int x2 = Math.abs(r.nextInt()) % w;
             int y2 = Math.abs(r.nextInt()) % h;
-            g2d.drawLine(x1,y1,x2,y2);
+            if (LiangBarsky(x1, y1, x2, y2)) {
+                g2d.setColor(Color.RED);
+                g2d.drawLine(cx0, cy0, cx1, cy1);
+            } else {
+                g2d.drawLine(x1, y1, x2, y2);
+            }
+
         }
     }
-    
-    public void LiangBarsky(){
-        
+
+    public boolean LiangBarsky(double x0, double y0, double x1, double y1) {
+        double t0 = 0.0;
+        double t1 = 1.0;
+        double dx = x1 - x0;
+        double dy = y1 - y0;
+        double p = 0.0, q = 0.0, r = 0.0;
+        for (int esquina = 0; esquina < 4; esquina++) {
+            if (esquina == 0) {
+                p = -dx;
+                q = -(-125f - x0);
+            }
+            if (esquina == 1) {
+                p = dx;
+                q = (125f - x0);
+            }
+            if (esquina == 2) {
+                p = -dy;
+                q = -(-125f - y0);
+            }
+            if (esquina == 3) {
+                p = dy;
+                q = (125f - y0);
+            }
+            r = q / p;
+            if (p == 0 && q < 0) {
+                return false;
+            }
+            if (p < 0) {
+                if (r > t1) {
+                    return false;         // Don't draw line at all.
+                } else if (r > t0) {
+                    t0 = r;            // Line is clipped!
+                }
+            } else if (p > 0) {
+                if (r < t0) {
+                    return false;      // Don't draw line at all.
+                } else if (r < t1) {
+                    t1 = r;
+                }// Line is clipped!
+            }
+        }
+        System.out.println(x0+t0*dx);
+        //cx0 = x0 + t0*dx;
+        return true;
     }
 
     public static void main(String[] args) {
