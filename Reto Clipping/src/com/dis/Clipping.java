@@ -30,20 +30,21 @@ public class Clipping extends JPanel {
         int w = size.width - insets.left - insets.right;
         int h = size.height - insets.top - insets.bottom;
 
-        g2d.setColor(Color.BLUE);
+        g2d.setColor(Color.DARK_GRAY);
+        g2d.drawRect(125, 125, -125, -125);
         for (int i = 0; i < 10000; i++) {
             int x1 = Math.abs(r.nextInt()) % w;
             int y1 = Math.abs(r.nextInt()) % h;
             int x2 = Math.abs(r.nextInt()) % w;
             int y2 = Math.abs(r.nextInt()) % h;
             if (LiangBarsky(x1, y1, x2, y2)) {
-                g2d.setColor(Color.RED);
+                g2d.setColor(Color.BLUE);
                 g2d.drawLine(x1, y1, cx0, cy0);
-                g2d.setColor(Color.GREEN);
-                g2d.drawLine(cx0, cy0,cx1,cy1);
-                g2d.setColor(Color.RED);
                 g2d.drawLine(cx1, cy1, x2, y2);
+                g2d.setColor(Color.RED);
+                g2d.drawLine(cx0, cy0, cx1, cy1);
             } else {
+                g2d.setColor(Color.BLUE);
                 g2d.drawLine(x1, y1, x2, y2);
             }
 
@@ -53,49 +54,59 @@ public class Clipping extends JPanel {
     public boolean LiangBarsky(double x0, double y0, double x1, double y1) {
         double t0 = 0.0;
         double t1 = 1.0;
-        double dx = x1 - x0;
-        double dy = y1 - y0;
+        int dx = (int) (x1 - x0);
+        int dy = (int) (y1 - y0);
         double p = 0.0, q = 0.0, r;
         for (int esquina = 0; esquina < 4; esquina++) {
             if (esquina == 0) {
                 p = -dx;
-                q = -(x0-125f);
+                q = -(x0 - 125.0);
             }
             if (esquina == 1) {
                 p = dx;
-                q = (125f - x0);
+                q = (125.0 - x0);
             }
             if (esquina == 2) {
                 p = -dy;
-                q = -(y0-125f);
+                q = -(y0 - 125.0);
             }
             if (esquina == 3) {
                 p = dy;
-                q = (125f - y0);
+                q = (125.0 - y0);
             }
-            r = q / p;
             if (p == 0 && q < 0) {
                 return false;
-            }
-            if (p < 0) {
-                if (r > t1) {
-                    return false;         // Don't draw line at all.
-                } else if (r > t0) {
-                    t0 = r;            // Line is clipped!
+            } else {
+                r = (double) q / p;
+                if (p < 0) {
+                    t0 = Math.max(r, t0);
+                } else {
+                    t1 = Math.min(r, t1);
                 }
-            } else if (p > 0) {
-                if (r < t0) {
-                    return false;      // Don't draw line at all.
-                } else if (r < t1) {
-                    t1 = r;
-                }// Line is clipped!
             }
+//            r = q / p;
+//            if (p < 0) {
+//                if (r > t1) {
+//                    return false;         // Don't draw line at all.
+//                } else if (r > t0) {
+//                    t0 = r;            // Line is clipped!
+//                }
+//            } else if (p > 0) {
+//                if (r < t0) {
+//                    return false;      // Don't draw line at all.
+//                } else if (r < t1) {
+//                    t1 = r;
+//                }// Line is clipped!
+//            }
+        }
+        if (t0 > t1) {
+            return false;
         }
         //System.out.println(x0+t0*dx);
-        cx0 = (int)(x0 + t0*dx);
-        cy0 = (int)(y0 + t0*dy);
-        cx1 = (int)(x0 + t1*dx);
-        cy1 = (int)(y0 + t1*dy);
+        cx0 = (int) (x0 + t0 * dx);
+        cy0 = (int) (y0 + t0 * dy);
+        cx1 = (int) (x0 + t1 * dx);
+        cy1 = (int) (y0 + t1 * dy);
         return true;
     }
 
