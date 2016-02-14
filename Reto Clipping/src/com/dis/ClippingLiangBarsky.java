@@ -10,8 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 
 import java.util.Random;
+import java.lang.System;
 
-public class Clipping extends JPanel {
+public class ClippingLiangBarsky extends JPanel {
 
     int cx0, cy0, cx1, cy1;
 
@@ -32,7 +33,7 @@ public class Clipping extends JPanel {
 
         g2d.setColor(Color.DARK_GRAY);
         g2d.drawRect(125, 125, -125, -125);
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100000; i++) {
             int x1 = Math.abs(r.nextInt()) % w;
             int y1 = Math.abs(r.nextInt()) % h;
             int x2 = Math.abs(r.nextInt()) % w;
@@ -57,22 +58,22 @@ public class Clipping extends JPanel {
         int dx = (int) (x1 - x0);
         int dy = (int) (y1 - y0);
         double p = 0.0, q = 0.0, r;
-        for (int esquina = 0; esquina < 4; esquina++) {
-            if (esquina == 0) {
+        for (int side = 0; side < 4; side++) {
+            if (side == 0) {
                 p = -dx;
-                q = -(x0 - 125.0);
+                q = -(x0 - 250.0);
             }
-            if (esquina == 1) {
+            if (side == 1) {
                 p = dx;
-                q = (125.0 - x0);
+                q = (250 - x0);
             }
-            if (esquina == 2) {
+            if (side == 2) {
                 p = -dy;
-                q = -(y0 - 125.0);
+                q = -(y0 - 250);
             }
-            if (esquina == 3) {
+            if (side == 3) {
                 p = dy;
-                q = (125.0 - y0);
+                q = (250 - y0);
             }
             if (p == 0 && q < 0) {
                 return false;
@@ -87,22 +88,21 @@ public class Clipping extends JPanel {
 //            r = q / p;
 //            if (p < 0) {
 //                if (r > t1) {
-//                    return false;         // Don't draw line at all.
+//                    return false;         
 //                } else if (r > t0) {
-//                    t0 = r;            // Line is clipped!
+//                    t0 = r;            
 //                }
 //            } else if (p > 0) {
 //                if (r < t0) {
-//                    return false;      // Don't draw line at all.
+//                    return false;      
 //                } else if (r < t1) {
 //                    t1 = r;
-//                }// Line is clipped!
+//                }
 //            }
         }
         if (t0 > t1) {
             return false;
         }
-        //System.out.println(x0+t0*dx);
         cx0 = (int) (x0 + t0 * dx);
         cy0 = (int) (y0 + t0 * dy);
         cx1 = (int) (x0 + t1 * dx);
@@ -111,18 +111,21 @@ public class Clipping extends JPanel {
     }
 
     public static void main(String[] args) {
+        long viejo = System.currentTimeMillis();
         // Crear un nuevo Frame
         JFrame frame = new JFrame("Clipping");
         // Al cerrar el frame, termina la ejecución de este programa
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Agregar un JPanel que se llama Points (esta clase)
-        frame.add(new Clipping());
+        frame.add(new ClippingLiangBarsky());
         // Asignarle tamaño
         frame.setSize(500, 500);
         // Poner el frame en el centro de la pantalla
         frame.setLocationRelativeTo(null);
         // Mostrar el frame
-        frame.setResizable(false);
+        //frame.setResizable(false);
         frame.setVisible(true);
+        long nuevo = System.currentTimeMillis();
+        System.out.println("El tiempo transcurrido fue: " + ((nuevo - viejo)) + " milisegundos");
     }
 }
