@@ -31,14 +31,18 @@ public class Clipping extends JPanel {
         int h = size.height - insets.top - insets.bottom;
 
         g2d.setColor(Color.BLUE);
-        for (int i = 0; i < 5000; i++) {
+        for (int i = 0; i < 10000; i++) {
             int x1 = Math.abs(r.nextInt()) % w;
             int y1 = Math.abs(r.nextInt()) % h;
             int x2 = Math.abs(r.nextInt()) % w;
             int y2 = Math.abs(r.nextInt()) % h;
             if (LiangBarsky(x1, y1, x2, y2)) {
                 g2d.setColor(Color.RED);
-                g2d.drawLine(cx0, cy0, cx1, cy1);
+                g2d.drawLine(x1, y1, cx0, cy0);
+                g2d.setColor(Color.GREEN);
+                g2d.drawLine(cx0, cy0,cx1,cy1);
+                g2d.setColor(Color.RED);
+                g2d.drawLine(cx1, cy1, x2, y2);
             } else {
                 g2d.drawLine(x1, y1, x2, y2);
             }
@@ -51,11 +55,11 @@ public class Clipping extends JPanel {
         double t1 = 1.0;
         double dx = x1 - x0;
         double dy = y1 - y0;
-        double p = 0.0, q = 0.0, r = 0.0;
+        double p = 0.0, q = 0.0, r;
         for (int esquina = 0; esquina < 4; esquina++) {
             if (esquina == 0) {
                 p = -dx;
-                q = -(-125f - x0);
+                q = -(x0-125f);
             }
             if (esquina == 1) {
                 p = dx;
@@ -63,7 +67,7 @@ public class Clipping extends JPanel {
             }
             if (esquina == 2) {
                 p = -dy;
-                q = -(-125f - y0);
+                q = -(y0-125f);
             }
             if (esquina == 3) {
                 p = dy;
@@ -87,8 +91,11 @@ public class Clipping extends JPanel {
                 }// Line is clipped!
             }
         }
-        System.out.println(x0+t0*dx);
-        //cx0 = x0 + t0*dx;
+        //System.out.println(x0+t0*dx);
+        cx0 = (int)(x0 + t0*dx);
+        cy0 = (int)(y0 + t0*dy);
+        cx1 = (int)(x0 + t1*dx);
+        cy1 = (int)(y0 + t1*dy);
         return true;
     }
 
@@ -104,7 +111,7 @@ public class Clipping extends JPanel {
         // Poner el frame en el centro de la pantalla
         frame.setLocationRelativeTo(null);
         // Mostrar el frame
-        //frame.setResizable(false);
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 }
