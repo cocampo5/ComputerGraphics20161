@@ -2,9 +2,9 @@ package com.dis;
 
 public class Vector3D {
 
-    private double x;
-    private double y;
-    private double z;
+    private final double x;
+    private final double y;
+    private final double z;
 
     public Vector3D(double x, double y, double z) {
         this.x = x;

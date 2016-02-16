@@ -2,7 +2,7 @@ package com.dis;
 
 public class Matriz3D {
 
-    private double [][] matriz;
+    private final double [][] matriz;
 
     public Matriz3D(double[][] matriz) {
         matriz = new double[4][4];

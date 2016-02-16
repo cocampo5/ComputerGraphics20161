@@ -2,10 +2,10 @@ package com.dis;
 
 public class HomoPoint3D {
 
-    private double x;
-    private double y;
-    private double z;
-    private double w;
+    private final double x;
+    private final double y;
+    private final double z;
+    private final double w;
 
     public HomoPoint3D(double x, double y, double z) {
         this.x = x;
@@ -14,6 +14,11 @@ public class HomoPoint3D {
         this.w = 1;
     }
 
+    public double[][] toMatrix(HomoPoint3D a) {
+        double[][] ret = {{a.x}, {a.y}, {a.z}, {a.w}};
+        return ret;
+    }
+    
     public double getX() {
         return x;
     }

@@ -2,9 +2,9 @@ package com.dis;
 
 public class Point3D {
 
-    private double x;
-    private double y;
-    private double z;
+    private final double x;
+    private final double y;
+    private final double z;
 
     public Point3D(double x, double y, double z) {
         this.x = x;
