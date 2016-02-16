@@ -33,7 +33,7 @@ public class ClippingLiangBarsky extends JPanel {
 
         g2d.setColor(Color.DARK_GRAY);
         g2d.drawRect(125, 125, -125, -125);
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 10000; i++) {
             int x1 = Math.abs(r.nextInt()) % w;
             int y1 = Math.abs(r.nextInt()) % h;
             int x2 = Math.abs(r.nextInt()) % w;

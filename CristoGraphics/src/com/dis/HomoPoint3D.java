@@ -30,5 +30,4 @@ public class HomoPoint3D {
         return w;
     }
 
-    
 }
