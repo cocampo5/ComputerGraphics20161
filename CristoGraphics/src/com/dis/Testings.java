@@ -12,6 +12,8 @@ public class Testings {
         Vector3D c = new Vector3D(1, 3, 5);
         Vector3D d = new Vector3D(2, 4, 6);
         Point2D fff = new Point2D(3, 4);
+        double[][] aaa = {{1, 2, 3, 1}, {4, 5, 6, 1}, {7, 8, 9, 1} ,{10,11,12,1}};
+        Matriz3D aa = new Matriz3D(aaa);
         Vector2D res1 = a.multVectScalar(a, 2);
         Vector2D res2 = a.sumarVectores(a, b);
         Vector3D res3 = a.productoCruz(a, b);
@@ -30,5 +32,9 @@ public class Testings {
         System.out.println(res6.getX() + "," + res6.getY() + "," + res6.getZ());
         System.out.println(res7.getX() + "," + res7.getY() + "," + res7.getZ());
         System.out.println(res8);
+        Matriz3D res9 = new Matriz3D(aa.multEscalar(aaa, 2));
+        
+        System.out.println(res9.toString());
+        System.out.println();
     }
 }
