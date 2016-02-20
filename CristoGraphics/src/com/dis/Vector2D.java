@@ -4,6 +4,8 @@ public class Vector2D {
 
     private final double x;
     private final double y;
+    //private final Point2D x0;
+    //private final Point2D x1;
 
     public Vector2D(double x, double y) {
         this.x = x;
@@ -13,6 +15,13 @@ public class Vector2D {
     public Vector2D sumarVectores(Vector2D a, Vector2D b) {
         double e = a.getX() + b.getX();
         double d = b.getY() + a.getY();
+        Vector2D res = new Vector2D(e, d);
+        return res;
+    }
+
+    public Vector2D restarVectores(Vector2D a, Vector2D b) {
+        double e = a.getX() - b.getX();
+        double d = b.getY() - a.getY();
         Vector2D res = new Vector2D(e, d);
         return res;
     }

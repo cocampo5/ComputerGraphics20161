@@ -11,6 +11,7 @@ public class Testings {
         Vector2D b = new Vector2D(5, 7);
         Vector3D c = new Vector3D(1, 3, 5);
         Vector3D d = new Vector3D(2, 4, 6);
+        Point2D fff = new Point2D(3, 4);
         Vector2D res1 = a.multVectScalar(a, 2);
         Vector2D res2 = a.sumarVectores(a, b);
         Vector3D res3 = a.productoCruz(a, b);

@@ -19,6 +19,14 @@ public class Vector3D {
         Vector3D res = new Vector3D(e, d, f);
         return res;
     }
+    
+     public Vector3D restarVectores(Vector3D a, Vector3D b) {
+        double e = a.getX() - b.getX();
+        double d = a.getY() - b.getY();
+        double f = a.getZ() - b.getZ();
+        Vector3D res = new Vector3D(e, d, f);
+        return res;
+    }
 
     public Vector3D multVectScalar(Vector3D a, int b) {
         double d = a.getX() * b;

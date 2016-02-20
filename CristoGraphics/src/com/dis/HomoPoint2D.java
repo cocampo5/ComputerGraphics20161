@@ -2,31 +2,33 @@ package com.dis;
 
 public class HomoPoint2D {
 
-    private final double x;
-    private final double y;
-    private final double w;
+    private final double[] point = new double[3];
 
-    public HomoPoint2D(double x, double y) {
-        this.x = x;
-        this.y = y;
-        this.w = 1;
-    }
-
-    public double[][] toMatrix(HomoPoint2D a) {
-        double[][] ret = {{a.x}, {a.y}, {a.w}};
-        return ret;
+    public HomoPoint2D(double x, double y, double w) {
+        this.point[0] = x;
+        this.point[1] = y;
+        this.point[2] = w;
     }
 
     public double getX() {
-        return x;
+        return this.point[0];
     }
 
     public double getY() {
-        return y;
+        return this.point[1];
     }
 
     public double getW() {
-        return w;
+        return this.point[2];
+    }
+
+    public double[] getCoordinates() {
+        return this.point;
+    }
+
+    @Override
+    public String toString() {
+        return "P(" + this.point[0] + "," + this.point[1] + "," + this.point[2] + ")";
     }
 
 }
