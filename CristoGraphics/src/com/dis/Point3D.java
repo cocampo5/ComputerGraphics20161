@@ -2,7 +2,7 @@ package com.dis;
 
 public class Point3D {
 
-    private final double[] coordinates = new double[2];
+    private final double[] coordinates = new double[3];
 
     public Point3D(double x, double y, double z) {
         this.coordinates[0] = x;
