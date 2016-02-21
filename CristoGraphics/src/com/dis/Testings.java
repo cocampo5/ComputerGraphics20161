@@ -3,7 +3,7 @@ package com.dis;
 public class Testings {
 
     public Testings() {
-        System.out.println("Testeando los métodos");
+        System.out.println("Testeando los métodos\n");
     }
 
     public void Point2D() {
@@ -27,7 +27,7 @@ public class Testings {
     public void TestHomoPoint3D() {
         System.out.println("Testeando Puntos Homogeneos 3D");
         HomoPoint3D a = new HomoPoint3D(3, 4, 9, 2);
-        System.out.println(a.toString());
+        System.out.println(a.toString()+"\n");
     }
 
     public void Matriz2D() {
@@ -45,12 +45,12 @@ public class Testings {
         System.out.println("Sumando Matriz y Matriz");
         System.out.println(res2.toString());
         System.out.println("Determinante de la matriz");
-        System.out.println(res3);
+        System.out.println(res3+"\n");
 
     }
 
     public void Matriz3D() {
-        System.out.println("Testeando Matrices3D");
+        System.out.println("Testeando Matrices3D\n");
         double[][] a = {{1, 2, 3, 1}, {4, 5, 6, 1}, {7, 8, 9, 1}, {10, 11, 12, 1}};
         Matriz3D aa = new Matriz3D(a);
         Matriz3D res = new Matriz3D(aa.multEscalar(a, 2));
@@ -64,7 +64,7 @@ public class Testings {
         System.out.println("Sumando Matriz y Matriz");
         System.out.println(res2.toString());
         System.out.println("Determinante de la matriz");
-        System.out.println(res3);
+        System.out.println(res3+"\n");
     }
 
     public void Vector2D() {
@@ -82,7 +82,7 @@ public class Testings {
         System.out.println("Producto cruz v1 x v2");
         System.out.println(res3.getX() + "," + res3.getY() + "," + res3.getZ());
         System.out.println("Producto punto v1 . v2");
-        System.out.println(res4);
+        System.out.println(res4+"\n");
     }
 
     public void Vector3D() {
@@ -100,7 +100,7 @@ public class Testings {
         System.out.println("Producto cruz v1 x v2");
         System.out.println(res3.getX() + "," + res3.getY() + "," + res3.getZ());
         System.out.println("Producto punto v1 . v2");
-        System.out.println(res4);
+        System.out.println(res4+"\n");
     }
 
     public void multPuntHMatriz() {
