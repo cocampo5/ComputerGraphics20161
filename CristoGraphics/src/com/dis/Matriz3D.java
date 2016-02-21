@@ -60,17 +60,45 @@ public class Matriz3D {
         }
         return res;
     }
-    
-        public double[][] multEscalar(double[][] a, double b) {
+
+    public double[][] multEscalar(double[][] a, double b) {
         int row1 = a.length;
         int col1 = a[0].length;
         double[][] res = new double[4][4];
         for (int i = 0; i < row1; i++) {
             for (int j = 0; j < col1; j++) {
-                res[i][j] = a[i][j]*b;
+                res[i][j] = a[i][j] * b;
             }
         }
         return res;
+    }
+
+    public double detMatrix(double[][] a) {
+        int sum = 0;
+        int s;
+        if (a.length == 1) {
+            return a[0][0];
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            double[][] cut = new double[a.length - 1][a[0].length];
+            for (int j = 1; j < a.length; j++) {
+                for (int k = 0; k < a.length; k++) {
+                    if (k < i) {
+                        cut[j - 1][k] = a[j][k];
+                    } else if (k > i) {
+                        cut[j - 1][k - 1] = a[j][k];
+                    }
+                }
+            }
+            if (i % 2 == 0) {
+                s = 1;
+            } else {
+                s = -1;
+            }
+            sum += s * a[0][i] * detMatrix(cut);
+        }
+        return sum;
     }
 
     @Override

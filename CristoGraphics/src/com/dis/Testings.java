@@ -37,9 +37,12 @@ public class Testings {
         Matriz2D res = new Matriz2D(aa.multEscalar(a, 2));
         Matriz2D res1 = new Matriz2D(aa.multMatriz(a, a));
         Matriz2D res2 = new Matriz2D(aa.sumMatriz(a, res.getMatrix()));
+        double res3 = aa.detMatrix(a);
         System.out.println(res.toString());
         System.out.println(res1.toString());
         System.out.println(res2.toString());
+        System.out.println(res3);
+        
     }
 
     public void Matriz3D() {
@@ -49,9 +52,11 @@ public class Testings {
         Matriz3D res = new Matriz3D(aa.multEscalar(a, 2));
         Matriz3D res1 = new Matriz3D(aa.multMatriz(a, a));
         Matriz3D res2 = new Matriz3D(aa.sumMatriz(a, res.getMatrix()));
+        double res3 = aa.detMatrix(a);
         System.out.println(res.toString());
         System.out.println(res1.toString());
         System.out.println(res2.toString());
+        System.out.println(res3);
     }
 
     public void Vector2D() {
@@ -82,6 +87,20 @@ public class Testings {
         System.out.println(res8);
     }
 
+    public void multPuntHMatriz(){
+        System.out.println("Multiplicando un punto homogeneo por una Matriz2D");
+        HomoPoint2D a = new HomoPoint2D(2,3,4);
+        double [][] b = {{1,2,3},{1,2,3},{1,2,3}};
+        Matriz2D c = new Matriz2D(b);
+        Matriz2D res = new Matriz2D(c.multMatriz(a.getCoordinates(),b));
+        System.out.println(res.toString());
+        System.out.println("Multiplicando un punto homogeneo por una Matriz3D");
+        HomoPoint3D d = new HomoPoint3D(2,3,4,5);
+        double [][] e = {{1,2,3,4},{1,2,3,4},{1,2,3,4},{1,2,3,4}};
+        Matriz3D f = new Matriz3D(e);
+        Matriz3D res1 = new Matriz3D(c.multMatriz(d.getCoordinates(),e));
+        System.out.println(res1.toString());
+    }
     public static void main(String args[]) {
         Testings test1 = new Testings();
         test1.Matriz2D();
@@ -92,5 +111,6 @@ public class Testings {
         test1.TestHomoPoint3D();
         test1.Vector2D();
         test1.Vector3D();
+        test1.multPuntHMatriz();
     }
 }
