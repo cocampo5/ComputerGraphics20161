@@ -42,7 +42,7 @@ public class Testings {
         System.out.println(res1.toString());
         System.out.println(res2.toString());
         System.out.println(res3);
-        
+
     }
 
     public void Matriz3D() {
@@ -87,20 +87,33 @@ public class Testings {
         System.out.println(res8);
     }
 
-    public void multPuntHMatriz(){
-        System.out.println("Multiplicando un punto homogeneo por una Matriz2D");
-        HomoPoint2D a = new HomoPoint2D(2,3,4);
-        double [][] b = {{1,2,3},{1,2,3},{1,2,3}};
+    public void multPuntHMatriz() {
+        System.out.println("Multiplicando un punto homogeneo 2D por una Matriz2D");
+        HomoPoint2D a = new HomoPoint2D(2, 3, 4);
+        double[][] b = {{1, 2, 3}, {1, 2, 3}, {1, 2, 3}};
         Matriz2D c = new Matriz2D(b);
-        Matriz2D res = new Matriz2D(c.multMatriz(a.getCoordinates(),b));
+        Matriz2D res = new Matriz2D(c.multMatriz(a.getCoordinates(), b));
         System.out.println(res.toString());
-        System.out.println("Multiplicando un punto homogeneo por una Matriz3D");
-        HomoPoint3D d = new HomoPoint3D(2,3,4,5);
-        double [][] e = {{1,2,3,4},{1,2,3,4},{1,2,3,4},{1,2,3,4}};
+        System.out.println("Multiplicando un punto homogeneo 3D por una Matriz3D");
+        HomoPoint3D d = new HomoPoint3D(2, 3, 4, 5);
+        double[][] e = {{1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}};
         Matriz3D f = new Matriz3D(e);
-        Matriz3D res1 = new Matriz3D(c.multMatriz(d.getCoordinates(),e));
+        Matriz3D res1 = new Matriz3D(f.multMatriz(d.getCoordinates(), e));
         System.out.println(res1.toString());
     }
+
+    public void ParSeg3D() {
+        System.out.println("Ecuación Parametrica xyz");
+        ParametricSegment3D a = new ParametricSegment3D(3, 4, 6, 8, 9, 12);
+        System.out.println(a.toString());
+    }
+    
+    public void ParSeg2D(){
+        System.out.println("Ecuacion parametrica xy");
+        ParametricSegment2D a = new ParametricSegment2D(3,4,12,16);
+        System.out.println(a.toString());
+    }
+
     public static void main(String args[]) {
         Testings test1 = new Testings();
         test1.Matriz2D();
@@ -112,5 +125,7 @@ public class Testings {
         test1.Vector2D();
         test1.Vector3D();
         test1.multPuntHMatriz();
+        test1.ParSeg2D();
+        test1.ParSeg3D();
     }
 }

@@ -33,7 +33,7 @@ public class HomoPoint3D {
 
     @Override
     public String toString() {
-        return "P(" + this.point[0][0] + "," + this.point[0][1] + "," + this.point[0][2] +","+ this.point[0][3] + ")";
+        return "P(" + this.point[0][0] + "," + this.point[0][1] + "," + this.point[0][2] + "," + this.point[0][3] + ")";
     }
 
 }
