@@ -2,32 +2,27 @@ package com.dis;
 
 public class ParametricSegment2D {
 
-    private final double x0;
-    private final double y0;
-    private final double x1;
-    private final double y1;
+    double x0, y0;
+    double dx, dy;
 
     public ParametricSegment2D(double x0, double y0, double x1, double y1) {
         this.x0 = x0;
         this.y0 = y0;
-        this.x1 = x1;
-        this.y1 = y1;
+        this.dx = x1 - x0;
+        this.dy = y1 - y0;
     }
 
-    public double getX0() {
-        return x0;
+    public double xEquation(ParametricSegment2D eq, double t) {
+        return eq.x0 + t * eq.dx;
     }
 
-    public double getY0() {
-        return y0;
+    public double yEquation(ParametricSegment2D eq, double t) {
+        return eq.y0 + t * eq.dy;
     }
 
-    public double getX1() {
-        return x1;
+    @Override
+    public String toString() {
+        return ("x = " + this.x0 + "+t(" + this.dx + ")\n")
+                + ("y = " + this.y0 + "+t(" + this.dy + ")\n");
     }
-
-    public double getY1() {
-        return y1;
-    }
-
 }

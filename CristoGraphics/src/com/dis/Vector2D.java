@@ -2,17 +2,28 @@ package com.dis;
 
 public class Vector2D {
 
-    private final double x;
-    private final double y;
-
+    private final double[] components = new double[2];
+    
     public Vector2D(double x, double y) {
-        this.x = x;
-        this.y = y;
+        this.components[0] = x;
+        this.components[1] = y;
+    }
+
+    public Vector2D(Point2D a, Point2D b) {
+        this.components[0] = a.getX()-b.getX();
+        this.components[1] = a.getY()-b.getY();
     }
 
     public Vector2D sumarVectores(Vector2D a, Vector2D b) {
         double e = a.getX() + b.getX();
         double d = b.getY() + a.getY();
+        Vector2D res = new Vector2D(e, d);
+        return res;
+    }
+
+    public Vector2D restarVectores(Vector2D a, Vector2D b) {
+        double e = a.getX() - b.getX();
+        double d = b.getY() - a.getY();
         Vector2D res = new Vector2D(e, d);
         return res;
     }
@@ -38,11 +49,11 @@ public class Vector2D {
     }
 
     public double getX() {
-        return x;
+        return this.components[0];
     }
 
     public double getY() {
-        return y;
+        return this.components[1];
     }
 
 }

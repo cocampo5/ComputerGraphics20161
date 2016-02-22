@@ -2,45 +2,34 @@ package com.dis;
 
 public class ParametricSegment3D {
 
-    private final double x0;
-    private final double y0;
-    private final double z0;
-    private final double x1;
-    private final double y1;
-    private final double z1;
+    double x0, y0, z0;
+    double dx, dy, dz;
 
     public ParametricSegment3D(double x0, double y0, double z0, double x1, double y1, double z1) {
         this.x0 = x0;
         this.y0 = y0;
         this.z0 = z0;
-        this.x1 = x1;
-        this.y1 = y1;
-        this.z1 = z1;
+        this.dx = x1 - x0;
+        this.dy = y1 - y0;
+        this.dz = z1 - z0;
     }
 
-    public double getX0() {
-        return x0;
+    public double xEquation(ParametricSegment3D eq, double t) {
+        return eq.x0 + t * eq.dx;
     }
 
-    public double getY0() {
-        return y0;
+    public double yEquation(ParametricSegment3D eq, double t) {
+        return eq.y0 + t * eq.dy;
     }
 
-    public double getZ0() {
-        return z0;
+    public double zEquation(ParametricSegment3D eq, double t) {
+        return eq.z0 + t * eq.dz;
     }
 
-    public double getX1() {
-        return x1;
+    @Override
+    public String toString() {
+        return ("x = " + this.x0 + "+t(" + this.dx + ")\n")
+                + ("y = " + this.y0 + "+t(" + this.dy + ")\n")
+                + ("z = " + this.z0 + "+t(" + this.dz + ")\n");
     }
-
-    public double getY1() {
-        return y1;
-    }
-
-    public double getZ1() {
-        return z1;
-    }
-    
-    
 }
