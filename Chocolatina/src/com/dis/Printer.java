@@ -4,38 +4,37 @@ package com.dis;
  * @author Cristóbal Ocampo Quintero
  *
  */
+import com.dis.Graphics.HomoPoint2D;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.io.IOException;
-import java.util.Random;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Iterator;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 
 public class Printer extends JPanel {
     
-    public ArrayList choco;
-
-    
-    public void getArrayList() throws IOException{
-        initializer init = new initializer();
-        this.choco = init.res.getChocolatina();
+    ChocoScan a;
+    public Printer() {
+        a = new ChocoScan();
     }
-    
-     /**
+
+    /**
      * Metodo para la construccion de la ventana
      *
      * @param g de Tipo Graphics
      *
      */
     @Override
-    public void paintComponent(Graphics g)  {
-        
+    public void paintComponent(Graphics g) {
+
+        //try {
         super.paintComponent(g);
-        System.out.println(choco.get(0));
         Graphics2D g2d = (Graphics2D) g;
         /*
          Transformacion xp=x+w/2
@@ -48,7 +47,9 @@ public class Printer extends JPanel {
         int h = size.height - insets.top - insets.bottom;
 
         g2d.setColor(Color.DARK_GRAY);
-        for (int i = 0; i < 10000; i++) {
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println(i);
             int x1 = Math.abs(r.nextInt()) % w;
             int y1 = Math.abs(r.nextInt()) % h;
             int x2 = Math.abs(r.nextInt()) % w;
@@ -56,12 +57,16 @@ public class Printer extends JPanel {
             g2d.drawLine(x1, y1, x2, y2);
 
         }
+        //} catch (Exception e) {
+        //System.out.println(e.getMessage());
+        //}
 
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Tangentes");
+    public static void main(String[] args) throws IOException {
+        JFrame frame = new JFrame("Chocolatinas");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //initializer a = new initializer();
         frame.add(new Printer());
         frame.setSize(600, 600);
         frame.setLocationRelativeTo(null);
