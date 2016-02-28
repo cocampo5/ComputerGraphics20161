@@ -4,6 +4,7 @@ package com.dis;
  * @author Cristóbal Ocampo Quintero
  *
  */
+import com.dis.Graphics.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -14,15 +15,19 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class Printer extends JPanel implements KeyListener {
 
     ChocoScan a;
-    Color color = Color.BLACK;
+    private ArrayList<HomoPoint2D> choco_original = new ArrayList<>();
+    private final double[][] b = {{1, 0, 10}, {0, 1, 10}, {0, 0, 1}};
+    private final Matriz2D trans_positiva = new Matriz2D(b);
 
     public Printer() {
         a = new ChocoScan();
         a.readLines();
+        choco_original = a.getChocolatina();
     }
 
     /**
@@ -115,17 +120,33 @@ public class Printer extends JPanel implements KeyListener {
     public void keyPressed(KeyEvent ke) {
         int code = ke.getKeyCode();
         switch (code) {
-            case KeyEvent.VK_UP:
+            case KeyEvent.VK_W:
                 System.out.println("UP");
+                double[][] fin = trans_positiva.multMatriz(b,a.getChocolatina().get(0).getCoordinates());
+                a.getChocolatina().get(0).setX(fin[0][0]);
+                a.getChocolatina().get(0).setY(fin[1][0]);
+                System.out.println(fin[0][0]+""+fin[1][0]+""+fin[2][0]);
                 break;
-            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S:
                 System.out.println("DOWN");
                 break;
-            case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
                 System.out.println("RIGHT");
                 break;
-            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_A:
                 System.out.println("LEFT");
+                break;
+            case KeyEvent.VK_Q:
+                System.out.println("ROTATE COUNTER CLOCKWISE");
+                break;
+            case KeyEvent.VK_E:
+                System.out.println("ROTATE CLOCKWISE");
+                break;
+            case KeyEvent.VK_PLUS:
+                System.out.println("ZOOM IN");
+                break;
+            case KeyEvent.VK_MINUS:
+                System.out.println("ZOOM OUT");
                 break;
         }
     }

@@ -108,7 +108,7 @@ public class Testings {
         HomoPoint2D a = new HomoPoint2D(2, 3, 4);
         double[][] b = {{1, 2, 3}, {1, 2, 3}, {1, 2, 3}};
         Matriz2D c = new Matriz2D(b);
-        Matriz2D res = new Matriz2D(c.multMatriz(a.getCoordinates(), b));
+        Matriz2D res = new Matriz2D(c.multMatriz(b,a.getCoordinates()));
         System.out.println(res.toString());
         System.out.println("Multiplicando un punto homogeneo 3D por una Matriz3D");
         HomoPoint3D d = new HomoPoint3D(2, 3, 4, 5);
