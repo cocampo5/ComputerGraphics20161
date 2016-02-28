@@ -21,8 +21,8 @@ public class ChocoScan {
             while (s.hasNext()) {
                 String str = s.next();
                 char[] myChar = str.toCharArray();
-                System.out.println(myChar.length);
-                System.out.println(myChar);
+                //System.out.println(myChar.length);
+                //System.out.println(myChar);
                 if (myChar.length == 2) {
                     //System.out.println("Punto " + myChar[0] + "," + myChar[1]);
                 } else if (myChar.length == 5) {

@@ -4,16 +4,13 @@ package com.dis;
  * @author Cristóbal Ocampo Quintero
  *
  */
-import com.dis.Graphics.HomoPoint2D;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.Iterator;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.awt.event.*;
@@ -22,6 +19,7 @@ public class Printer extends JPanel implements KeyListener {
 
     ChocoScan a;
     Color color = Color.BLACK;
+
     public Printer() {
         a = new ChocoScan();
         a.readLines();
@@ -101,7 +99,7 @@ public class Printer extends JPanel implements KeyListener {
                 g2d.drawLine(x0 + w / 2, h / 2 - y0, x1 + w / 2, h / 2 - y1);
             }
         }
-        //System.out.println(this.a.getChocolatina());
+        //System.out.println(this.code.getChocolatina());
         //} catch (Exception e) {
         //System.out.println(e.getMessage());
         //}
@@ -115,26 +113,31 @@ public class Printer extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent ke) {
-        int a = ke.getKeyCode();
-        if (a == KeyEvent.VK_B) {
-            System.out.println("Azul");
-            color = Color.BLUE;
-        } else if (a == KeyEvent.VK_R) {
-            color = Color.RED;
-        } else {
-            color = Color.MAGENTA;
+        int code = ke.getKeyCode();
+        switch (code) {
+            case KeyEvent.VK_UP:
+                System.out.println("UP");
+                break;
+            case KeyEvent.VK_DOWN:
+                System.out.println("DOWN");
+                break;
+            case KeyEvent.VK_RIGHT:
+                System.out.println("RIGHT");
+                break;
+            case KeyEvent.VK_LEFT:
+                System.out.println("LEFT");
+                break;
         }
     }
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        System.out.println(ke.getKeyCode());
     }
 
     public static void main(String[] args) throws IOException {
         JFrame frame = new JFrame("Chocolatinas");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //initializer a = new initializer();
+        //initializer code = new initializer();
         Printer p = new Printer();
         frame.add(p);
         frame.setSize(600, 600);
