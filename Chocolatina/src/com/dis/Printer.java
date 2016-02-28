@@ -16,14 +16,22 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Printer extends JPanel implements KeyListener {
 
     ChocoScan a;
     private ArrayList<HomoPoint2D> choco_original = new ArrayList<>();
-    private final double[][] b = {{1, 0, 10}, {0, 1, 10}, {0, 0, 1}};
-    private final Matriz2D trans_positiva = new Matriz2D(b);
+    private final double[][] madre = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+    private final Matriz2D matriz_madre = new Matriz2D(madre);
 
+    //Matrices de transformación
+    private final double[][] up = {{1, 0, 0}, {0, 1, 10}, {0, 0, 1}};
+    private final double[][] down = {{1, 0, 0}, {0, 1, -10}, {0, 0, 1}};
+    private final double[][] left = {{1, 0, -10}, {0, 1, 0}, {0, 0, 1}};
+    private final double[][] right = {{1, 0, 10}, {0, 1, 0}, {0, 0, 1}};
+    private final double[][] zoomin = {{1, 0, 10}, {0, 1, 0}, {0, 0, 1}};
+    private final double[][] zoomout = {{1, 0, 10}, {0, 1, 0}, {0, 0, 1}};
     public Printer() {
         a = new ChocoScan();
         a.readLines();
@@ -122,19 +130,39 @@ public class Printer extends JPanel implements KeyListener {
         switch (code) {
             case KeyEvent.VK_W:
                 System.out.println("UP");
-                double[][] fin = trans_positiva.multMatriz(b,a.getChocolatina().get(0).getCoordinates());
-                a.getChocolatina().get(0).setX(fin[0][0]);
-                a.getChocolatina().get(0).setY(fin[1][0]);
-                System.out.println(fin[0][0]+""+fin[1][0]+""+fin[2][0]);
+                for (int i = 0; i < 8; i++) {
+                    double[][] fin = matriz_madre.multMatriz(up, a.getChocolatina().get(i).getCoordinates());
+                    a.getChocolatina().get(i).setX(fin[0][0]);
+                    a.getChocolatina().get(i).setY(fin[1][0]);
+                    System.out.println(fin[0][0] + "," + fin[1][0] + "," + fin[2][0]);
+                }
                 break;
             case KeyEvent.VK_S:
                 System.out.println("DOWN");
+                for (int i = 0; i < 8; i++) {
+                    double[][] fin = matriz_madre.multMatriz(down, a.getChocolatina().get(i).getCoordinates());
+                    a.getChocolatina().get(i).setX(fin[0][0]);
+                    a.getChocolatina().get(i).setY(fin[1][0]);
+                    System.out.println(fin[0][0] + "," + fin[1][0] + "," + fin[2][0]);
+                }
                 break;
             case KeyEvent.VK_D:
                 System.out.println("RIGHT");
+                for (int i = 0; i < 8; i++) {
+                    double[][] fin = matriz_madre.multMatriz(right, a.getChocolatina().get(i).getCoordinates());
+                    a.getChocolatina().get(i).setX(fin[0][0]);
+                    a.getChocolatina().get(i).setY(fin[1][0]);
+                    System.out.println(fin[0][0] + "," + fin[1][0] + "," + fin[2][0]);
+                }
                 break;
             case KeyEvent.VK_A:
                 System.out.println("LEFT");
+                for (int i = 0; i < 8; i++) {
+                    double[][] fin = matriz_madre.multMatriz(left, a.getChocolatina().get(i).getCoordinates());
+                    a.getChocolatina().get(i).setX(fin[0][0]);
+                    a.getChocolatina().get(i).setY(fin[1][0]);
+                    System.out.println(fin[0][0] + "," + fin[1][0] + "," + fin[2][0]);
+                }
                 break;
             case KeyEvent.VK_Q:
                 System.out.println("ROTATE COUNTER CLOCKWISE");
