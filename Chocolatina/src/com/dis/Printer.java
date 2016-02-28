@@ -1,5 +1,4 @@
 package com.dis;
-
 /**
  * @author Cristóbal Ocampo Quintero
  *
@@ -21,7 +20,10 @@ import java.util.Iterator;
 public class Printer extends JPanel implements KeyListener {
 
     ChocoScan a;
+    //Guardo mi array original por si acaso
     private ArrayList<HomoPoint2D> choco_original = new ArrayList<>();
+
+    //Matriz desde la cual opero (Identidad 3x3)
     private final double[][] madre = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
     private final Matriz2D matriz_madre = new Matriz2D(madre);
 
@@ -30,8 +32,9 @@ public class Printer extends JPanel implements KeyListener {
     private final double[][] down = {{1, 0, 0}, {0, 1, -10}, {0, 0, 1}};
     private final double[][] left = {{1, 0, -10}, {0, 1, 0}, {0, 0, 1}};
     private final double[][] right = {{1, 0, 10}, {0, 1, 0}, {0, 0, 1}};
-    private final double[][] zoomin = {{1, 0, 10}, {0, 1, 0}, {0, 0, 1}};
-    private final double[][] zoomout = {{1, 0, 10}, {0, 1, 0}, {0, 0, 1}};
+    private final double[][] zoomin = {{1.2, 0, 0}, {0, 1.2, 0}, {0, 0, 1}};
+    private final double[][] zoomout = {{0.8, 0, 0}, {0, 0.8, 0}, {0, 0, 1}};
+
     public Printer() {
         a = new ChocoScan();
         a.readLines();
@@ -61,6 +64,7 @@ public class Printer extends JPanel implements KeyListener {
         int h = size.height - insets.top - insets.bottom;
 
         g2d.setColor(Color.DARK_GRAY);
+        //Pinto la chocolatina
         for (int i = 0; i < 6; i++) {
             //System.out.println(i);
             if (i == 0) {
@@ -112,11 +116,6 @@ public class Printer extends JPanel implements KeyListener {
                 g2d.drawLine(x0 + w / 2, h / 2 - y0, x1 + w / 2, h / 2 - y1);
             }
         }
-        //System.out.println(this.code.getChocolatina());
-        //} catch (Exception e) {
-        //System.out.println(e.getMessage());
-        //}
-
     }
 
     @Override
@@ -172,9 +171,25 @@ public class Printer extends JPanel implements KeyListener {
                 break;
             case KeyEvent.VK_PLUS:
                 System.out.println("ZOOM IN");
+                for (int i = 0; i < 8; i++) {
+                    double[][] fin = matriz_madre.multMatriz(zoomin, a.getChocolatina().get(i).getCoordinates());
+                    a.getChocolatina().get(i).setX(fin[0][0]);
+                    a.getChocolatina().get(i).setY(fin[1][0]);
+                    System.out.println(fin[0][0] + "," + fin[1][0] + "," + fin[2][0]);
+                }
                 break;
             case KeyEvent.VK_MINUS:
                 System.out.println("ZOOM OUT");
+                for (int i = 0; i < 8; i++) {
+                    double[][] fin = matriz_madre.multMatriz(zoomout, a.getChocolatina().get(i).getCoordinates());
+                    a.getChocolatina().get(i).setX(fin[0][0]);
+                    a.getChocolatina().get(i).setY(fin[1][0]);
+                    System.out.println(fin[0][0] + "," + fin[1][0] + "," + fin[2][0]);
+                }
+                break;
+            case KeyEvent.VK_R:
+                System.out.print("RESET: ");
+                System.out.println("Por implementar");
                 break;
         }
     }
