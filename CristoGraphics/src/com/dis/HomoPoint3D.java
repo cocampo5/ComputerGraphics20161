@@ -6,9 +6,9 @@ public class HomoPoint3D {
 
     public HomoPoint3D(double x, double y, double z, double w) {
         this.point[0][0] = x;
-        this.point[0][1] = y;
-        this.point[0][2] = z;
-        this.point[0][3] = w;
+        this.point[1][0] = y;
+        this.point[2][0] = z;
+        this.point[3][0] = w;
     }
 
     public double getX() {
@@ -16,15 +16,31 @@ public class HomoPoint3D {
     }
 
     public double getY() {
-        return this.point[0][1];
+        return this.point[1][0];
     }
 
     public double getZ() {
-        return this.point[0][2];
+        return this.point[2][0];
     }
 
     public double getW() {
-        return this.point[0][3];
+        return this.point[3][0];
+    }
+
+    public void setX(double x) {
+        this.point[0][0] = x;
+    }
+
+    public void setY(double y) {
+        this.point[1][0] = y;
+    }
+
+    public void setZ(double z) {
+        this.point[2][0] = z;
+    }
+
+    public void setW(double w) {
+        this.point[3][0] = w;
     }
 
     public double[][] getCoordinates() {
@@ -33,7 +49,7 @@ public class HomoPoint3D {
 
     @Override
     public String toString() {
-        return "P(" + this.point[0][0] + "," + this.point[0][1] + "," + this.point[0][2] + "," + this.point[0][3] + ")";
+        return "P(" + this.point[0][0] + "," + this.point[1][0] + "," + this.point[2][0] + "," + this.point[3][0] + ")";
     }
 
 }

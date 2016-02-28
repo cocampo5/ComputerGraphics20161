@@ -114,7 +114,7 @@ public class Testings {
         HomoPoint3D d = new HomoPoint3D(2, 3, 4, 5);
         double[][] e = {{1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}};
         Matriz3D f = new Matriz3D(e);
-        Matriz3D res1 = new Matriz3D(f.multMatriz(d.getCoordinates(), e));
+        Matriz3D res1 = new Matriz3D(f.multMatriz(e,d.getCoordinates()));
         System.out.println(res1.toString());
     }
 
