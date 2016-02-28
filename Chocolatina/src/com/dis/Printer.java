@@ -26,7 +26,7 @@ public class Printer extends JPanel implements KeyListener {
     //Matriz desde la cual opero (Identidad 3x3)
     private final double[][] madre = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
     private final Matriz2D matriz_madre = new Matriz2D(madre);
-
+    private final double radians = Math.cos(Math.toRadians(1));
     //Matrices de transformación
     private final double[][] up = {{1, 0, 0}, {0, 1, 10}, {0, 0, 1}};
     private final double[][] down = {{1, 0, 0}, {0, 1, -10}, {0, 0, 1}};
@@ -34,7 +34,8 @@ public class Printer extends JPanel implements KeyListener {
     private final double[][] right = {{1, 0, 10}, {0, 1, 0}, {0, 0, 1}};
     private final double[][] zoomin = {{1.2, 0, 0}, {0, 1.2, 0}, {0, 0, 1}};
     private final double[][] zoomout = {{0.8, 0, 0}, {0, 0.8, 0}, {0, 0, 1}};
-
+    private final double[][] clock = {{Math.cos(radians), Math.sin(radians), 0}, {-Math.sin(radians), Math.cos(radians), 0}, {0, 0, 1}};
+    private final double[][] counter = {{Math.cos(radians), -Math.sin(radians), 0}, {Math.sin(radians), Math.cos(radians), 0}, {0, 0, 1}};
     public Printer() {
         a = new ChocoScan();
         a.readLines();
@@ -165,9 +166,21 @@ public class Printer extends JPanel implements KeyListener {
                 break;
             case KeyEvent.VK_Q:
                 System.out.println("ROTATE COUNTER CLOCKWISE");
+                for (int i = 0; i < 8; i++) {
+                    double[][] fin = matriz_madre.multMatriz(counter, a.getChocolatina().get(i).getCoordinates());
+                    a.getChocolatina().get(i).setX(fin[0][0]);
+                    a.getChocolatina().get(i).setY(fin[1][0]);
+                    System.out.println(fin[0][0] + "," + fin[1][0] + "," + fin[2][0]);
+                }
                 break;
             case KeyEvent.VK_E:
                 System.out.println("ROTATE CLOCKWISE");
+                for (int i = 0; i < 8; i++) {
+                    double[][] fin = matriz_madre.multMatriz(clock, a.getChocolatina().get(i).getCoordinates());
+                    a.getChocolatina().get(i).setX(fin[0][0]);
+                    a.getChocolatina().get(i).setY(fin[1][0]);
+                    System.out.println(fin[0][0] + "," + fin[1][0] + "," + fin[2][0]);
+                }
                 break;
             case KeyEvent.VK_PLUS:
                 System.out.println("ZOOM IN");
