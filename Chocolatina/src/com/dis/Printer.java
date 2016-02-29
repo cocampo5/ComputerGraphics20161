@@ -1,4 +1,5 @@
 package com.dis;
+
 /**
  * @author Cristóbal Ocampo Quintero
  *
@@ -16,9 +17,12 @@ import javax.swing.JFrame;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.awt.BasicStroke;
 
 public class Printer extends JPanel implements KeyListener {
 
+    private int xP, yP;
+    BasicStroke stroke = new BasicStroke(5.f);
     ChocoScan a;
     //Guardo mi array original por si acaso
     private ArrayList<HomoPoint2D> choco_original = new ArrayList<>();
@@ -36,10 +40,21 @@ public class Printer extends JPanel implements KeyListener {
     private final double[][] zoomout = {{0.8, 0, 0}, {0, 0.8, 0}, {0, 0, 1}};
     private final double[][] clock = {{Math.cos(radians), Math.sin(radians), 0}, {-Math.sin(radians), Math.cos(radians), 0}, {0, 0, 1}};
     private final double[][] counter = {{Math.cos(radians), -Math.sin(radians), 0}, {Math.sin(radians), Math.cos(radians), 0}, {0, 0, 1}};
+
     public Printer() {
         a = new ChocoScan();
         a.readLines();
         choco_original = a.getChocolatina();
+    }
+
+    //mapeo en X
+    public int mapeoX(double x) {
+        return (int) x + xP;
+    }
+
+    //mapeo en y
+    public int mapeoY(double y) {
+        return (int) y * (-1) + yP;
     }
 
     /**
@@ -54,6 +69,7 @@ public class Printer extends JPanel implements KeyListener {
         //try {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+        setBackground(Color.black);
         /*
          Transformacion xp=x+w/2
          yp = h/2 - y
@@ -63,8 +79,13 @@ public class Printer extends JPanel implements KeyListener {
         Random r = new Random();
         int w = size.width - insets.left - insets.right;
         int h = size.height - insets.top - insets.bottom;
-
-        g2d.setColor(Color.DARK_GRAY);
+        yP = h / 2;
+        xP = w / 2;
+        g2d.setColor(Color.red);
+        g2d.drawLine(mapeoX(-1000), mapeoY(0), mapeoX(1000), mapeoY(0));
+        g2d.drawLine(mapeoX(0), mapeoY(-1000), mapeoX(0), mapeoY(1000));
+        g2d.setColor(Color.WHITE);
+        g2d.setStroke(stroke);
         //Pinto la chocolatina
         for (int i = 0; i < 6; i++) {
             //System.out.println(i);
