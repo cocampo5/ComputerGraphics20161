@@ -2,6 +2,7 @@ package com.dis;
 
 /**
  * @author Cristóbal Ocampo Quintero
+ * @author Juan Daniel Arboleda
  *
  */
 import com.dis.Graphics.*;
@@ -16,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.awt.BasicStroke;
 
 public class Printer extends JPanel implements KeyListener {
