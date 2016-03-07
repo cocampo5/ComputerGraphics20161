@@ -1,8 +1,9 @@
-package com.dis;
+package com.dis.Graphics;
 
 public class Vector3D {
 
     private final double[] components = new double[3];
+    private HomoPoint3D xx,yy;
 
     public Vector3D(double x, double y, double z) {
         this.components[0] = x;
@@ -16,6 +17,15 @@ public class Vector3D {
         this.components[2] = a.getZ()-b.getZ();
     }
 
+    public Vector3D(HomoPoint3D a, HomoPoint3D b) {
+        this.components[0] = a.getX()-b.getX();
+        this.components[1] = a.getY()-b.getY();
+        this.components[2] = a.getZ()-b.getZ();
+        this.xx=a;
+        this.yy=b;
+    }
+
+    
     public Vector3D sumarVectores(Vector3D a, Vector3D b) {
         double e = a.getX() + b.getX();
         double d = a.getY() + b.getY();
@@ -51,6 +61,11 @@ public class Vector3D {
         double k = a.getX() * b.getY() - b.getX() * a.getY();
         Vector3D res = new Vector3D(i, j, k);
         return res;
+    }
+    
+    @Override
+    public String toString(){
+        return getX()+","+getY()+","+getZ(); 
     }
 
     public double getX() {

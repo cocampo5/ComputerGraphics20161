@@ -1,55 +1,64 @@
 package com.dis;
 
-
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import com.dis.Graphics.*;
 
 public class ChocoScan {
 
-    private final ArrayList<HomoPoint3D> chocolatina = new ArrayList<>();
+    //HomoPoint3D puntos[];
+    //Vector3D vertices[];
+    private final ArrayList<HomoPoint3D> choco_puntos = new ArrayList<>();
+    private final ArrayList<Vector3D> choco_vectores = new ArrayList<>();
 
     public ChocoScan() {
 
     }
 
-    public void readLines() {
-        Scanner s = null;
+    public void readObjet(String file) throws IOException {
+        Scanner read;
         try {
-            s = new Scanner(new BufferedReader(new FileReader("chocolatina3D.txt")));
-            while (s.hasNext()) {
-                String str = s.next();
-                char[] myChar = str.toCharArray();
-                //System.out.println(myChar.length);
-                System.out.println(myChar);
-                if(myChar.length == 10){
-                    System.out.println("Coordenada");
-                }
-                else{
-                    if (myChar.length == 3) {
-                        System.out.println("Punto");
-                    }
-                    
-                    if (myChar.length == 4) {
-                        System.out.println("Punto");
-                    }
-                    
-                    if (myChar.length == 5) {
-                        System.out.println("Punto");
-                    }
-                }
+            read = new Scanner(new File(file));
+            int nVertices = read.nextInt();
+            //puntos = new HomoPoint3D[nVertices];
+            for (int i = 0; i < nVertices; i++) {
+                int x = read.nextInt();
+                int y = read.nextInt();
+                int z = read.nextInt();
+                //System.out.println("P("+x+","+y+","+z+")");
+                HomoPoint3D res = new HomoPoint3D(x, y, z, 1);
+                choco_puntos.add(res);
+                //puntos[i] = res;
             }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            if (s != null) {
-                s.close();
+            int nEdges = read.nextInt();
+            //vertices = new Vector3D[nEdges];
+            for (int i = 0; i < nEdges; i++) {
+                int init = read.nextInt();
+                int finish = read.nextInt();
+                System.out.println("Vertice del punto: " + init + " al " + finish);
+                Vector3D res = new Vector3D(choco_puntos.get(init), choco_puntos.get(finish));
+                //vertices[i] = new Vector3D(puntos[init], puntos[finish]);
+                choco_vectores.add(res);
             }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
         }
     }
 
-    public ArrayList<HomoPoint3D> getChocolatina() {
-        return chocolatina;
+    public ArrayList<HomoPoint3D> getChoco_puntos() {
+        return choco_puntos;
     }
 
+    public ArrayList<Vector3D> getChoco_vectores() {
+        return choco_vectores;
+    }
+
+//    public HomoPoint3D[] getPuntos() {
+//        return puntos;
+//    }
+//
+//    public Vector3D[] getVertices() {
+//        return vertices;
+//    }
 }

@@ -1,4 +1,4 @@
-package com.dis;
+package com.dis.Graphics;
 
 public class HomoPoint3D {
 
