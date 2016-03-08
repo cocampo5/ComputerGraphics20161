@@ -80,4 +80,21 @@ public class Vector3D {
         return this.components[2];
     }
 
+    public HomoPoint3D getXx() {
+        return xx;
+    }
+
+    public HomoPoint3D getYy() {
+        return yy;
+    }
+
+    public void setXx(HomoPoint3D xx) {
+        this.xx = xx;
+    }
+
+    public void setYy(HomoPoint3D yy) {
+        this.yy = yy;
+    }
+
+    
 }

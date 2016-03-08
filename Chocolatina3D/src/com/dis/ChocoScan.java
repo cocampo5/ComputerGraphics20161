@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import com.dis.Graphics.*;
+import javax.swing.JOptionPane;
 
 public class ChocoScan {
 
@@ -36,13 +37,14 @@ public class ChocoScan {
             for (int i = 0; i < nEdges; i++) {
                 int init = read.nextInt();
                 int finish = read.nextInt();
-                System.out.println("Vertice del punto: " + init + " al " + finish);
+                //System.out.println("Vertice del punto: " + init + " al " + finish);
                 Vector3D res = new Vector3D(choco_puntos.get(init), choco_puntos.get(finish));
                 //vertices[i] = new Vector3D(puntos[init], puntos[finish]);
                 choco_vectores.add(res);
             }
         } catch (FileNotFoundException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR MUY FATAL", JOptionPane.WARNING_MESSAGE);
+            System.exit(0);
         }
     }
 

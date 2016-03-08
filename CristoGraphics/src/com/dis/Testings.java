@@ -105,14 +105,14 @@ public class Testings {
 
     public void multPuntHMatriz() {
         System.out.println("Multiplicando un punto homogeneo 2D por una Matriz2D");
-        HomoPoint2D a = new HomoPoint2D(2, 3, 4);
-        double[][] b = {{1, 2, 3}, {1, 2, 3}, {1, 2, 3}};
+        HomoPoint2D a = new HomoPoint2D(20, 20, 1);
+        double[][] b = {{1, 0, 1}, {0, 1, 0}, {0, 0, 1}};
         Matriz2D c = new Matriz2D(b);
         Matriz2D res = new Matriz2D(c.multMatriz(b,a.getCoordinates()));
         System.out.println(res.toString());
         System.out.println("Multiplicando un punto homogeneo 3D por una Matriz3D");
-        HomoPoint3D d = new HomoPoint3D(2, 3, 4, 5);
-        double[][] e = {{1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}};
+        HomoPoint3D d = new HomoPoint3D(20, 20, -100, 1);
+        double[][] e = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 1/50f, 0}};
         Matriz3D f = new Matriz3D(e);
         Matriz3D res1 = new Matriz3D(f.multMatriz(e,d.getCoordinates()));
         System.out.println(res1.toString());
