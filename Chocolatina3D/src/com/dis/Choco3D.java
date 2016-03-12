@@ -31,7 +31,9 @@ public class Choco3D extends JPanel implements KeyListener {
     private ArrayList<Vector3D> choco_vectores = new ArrayList<>();
     private ArrayList<Vector3D> choco_vectores_trans = new ArrayList<>();
     //Matrices de transformación
-    private final double radians = Math.cos(Math.toRadians(1));
+    private final double radians = Math.toRadians(10.0);
+    private final double radianX = Math.toRadians(180);
+    private final double radianY = Math.toRadians(180);
     private final double perspectiva[][] = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 1 / 50f, 0}};
     private final double zoomin[][] = {{1.2, 0, 0, 0}, {0, 1.2, 0, 0}, {0, 0, 1.2, 0}, {0, 0, 0, 1}};
     private final double zoomout[][] = {{0.8, 0, 0, 0}, {0, 0.8, 0, 0}, {0, 0, 0.8, 0}, {0, 0, 0, 1}};
@@ -43,11 +45,11 @@ public class Choco3D extends JPanel implements KeyListener {
     private final double[][] clockz = {{Math.cos(radians), Math.sin(radians), 0,0}, {-Math.sin(radians), Math.cos(radians), 0,0}, {0, 0, 1,0},{0,0,0,1}};
     private final double[][] counterz = {{Math.cos(radians), -Math.sin(radians), 0,0}, {Math.sin(radians), Math.cos(radians), 0,0}, {0, 0, 1,0},{0,0,0,1}};
     
-    private final double[][] clockx = {{1,0,0,0}, {0,Math.cos(radians), -Math.sin(radians),0}, {0,Math.sin(radians), Math.cos(radians),0},{0,0,0,1}};
-    private final double[][] counterx = {{1,0,0,0}, {0,Math.cos(radians),Math.sin(radians),0}, {0,-Math.sin(radians), Math.cos(radians),0},{0,0,0,1}};
+    private final double[][] clockx = {{1,0,0,0}, {0,Math.cos(radianX), -Math.sin(radianX),0}, {0,Math.sin(radianX), Math.cos(radianX),0},{0,0,0,1}};
+    private final double[][] counterx = {{1,0,0,0}, {0,Math.cos(radianX),Math.sin(radianX),0}, {0,-Math.sin(radianX), Math.cos(radianX),0},{0,0,0,1}};
     
-    private final double[][] clocky = {{Math.cos(radians),0,Math.sin(radians),0},{0,1,0,0},{-Math.sin(radians),0,Math.cos(radians),0},{0,0,0,1}};
-    private final double[][] countery = {{Math.cos(radians),0,-Math.sin(radians),0},{0,1,0,0},{Math.sin(radians),0,Math.cos(radians),0},{0,0,0,1}};
+    private final double[][] clocky = {{Math.cos(radianY),0,Math.sin(radianY),0},{0,1,0,0},{-Math.sin(radianY),0,Math.cos(radianY),0},{0,0,0,1}};
+    private final double[][] countery = {{Math.cos(radianY),0,-Math.sin(radianY),0},{0,1,0,0},{Math.sin(radianY),0,Math.cos(radianY),0},{0,0,0,1}};
     //Matriz3D desde donde opero
     double matriz_madre[][] = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
     Matriz3D mother = new Matriz3D(matriz_madre);
