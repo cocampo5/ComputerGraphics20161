@@ -6,7 +6,7 @@
 package com.dis;
 
 
-import static com.dis.CollisionEx.sonido;
+import static com.dis.Start.sonido;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class Arthuro extends Sprite {
         
         missiles = new ArrayList<>();
         loadImage("Imagenes/arthurito.png");
-        getImageDimensions();
+        //getImageDimensions();
     }
 
     public void move() {

@@ -18,9 +18,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author JDaniels
  */
-public class CollisionEx extends JFrame {
+public class Start extends JFrame {
     public static javax.sound.sampled.Clip sonido;
-    public CollisionEx() {
+    public Start() {
         
         initUI();
     }
@@ -61,7 +61,7 @@ public class CollisionEx extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                CollisionEx ex = new CollisionEx();
+                Start ex = new Start();
                 //ex.setIconImage("Imagenes/universo.gif");
                 ex.sonidoBeepMenu();
                 ex.setVisible(true);

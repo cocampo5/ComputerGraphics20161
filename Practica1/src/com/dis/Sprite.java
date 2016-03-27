@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 /**
  *
  * @author JDaniels
+ * @author Cristobal
  */
 public class Sprite {
 
@@ -21,22 +22,16 @@ public class Sprite {
     protected Image image;
 
     public Sprite(int x, int y) {
-
         this.x = x;
         this.y = y;
         vis = true;
     }
-
-    protected void getImageDimensions() {
-
-        width = image.getWidth(null);
-        height = image.getHeight(null);
-    }
-
+    
     protected void loadImage(String imageName) {
-
         ImageIcon ii = new ImageIcon(imageName);
         image = ii.getImage();
+        this.width = image.getWidth(null);
+        this.height = image.getHeight(null);
     }
 
     public Image getImage() {
