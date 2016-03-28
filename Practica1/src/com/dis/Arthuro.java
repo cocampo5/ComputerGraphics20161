@@ -22,8 +22,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Arthuro extends Sprite {
 
     private int dx;
+    private boolean rotar = false;
     private int dy;
-    private ArrayList<Misil> missiles;
+    private ArrayList<Laser> missiles;
 
     public Arthuro(int x, int y) {
         super(x, y);
@@ -79,13 +80,22 @@ public class Arthuro extends Sprite {
         if (key == KeyEvent.VK_DOWN) {
             dy = 1;
         }
+        if (key == KeyEvent.VK_R){
+            if (rotar==false){
+                rotar = true;
+            }else{
+                rotar = false;
+            }
+       
+            
+        }
     }
     
     /*
-       MEtodo para disparar un nuevo misil
+       MEtodo para disparar un nuevo Laser
     */
     public void fire() {
-        missiles.add(new Misil(x + width, y + height / 2));
+        missiles.add(new Laser(x + width, y + height / 2,rotar));
         sonido();
         
     }

@@ -15,29 +15,35 @@ import java.awt.Image;
  */
 public class Enemigo extends Sprite {
     private final int INITIAL_X = 400;
+    private boolean naveReina;
     Random ran = new Random();
     private Random r = new Random();
     public Enemigo(int x, int y) {
         super(x, y);
-        initAlien();    
+        initEnemigo();    
     }
  
 
-    private void initAlien() {
+    private void initEnemigo() {
         loadImage("Imagenes/craft1.png");
+        naveReina = true;
        // getImageDimensions();
         switch(r.nextInt(5)%5){
             case 0:
                 loadImage("Imagenes/craft1.png");
+                naveReina = true;
                 break;
             case 1:
                 loadImage("Imagenes/nave2.png");
+                naveReina = false;
                 break;
             case 2:
                 loadImage("Imagenes/nave3.png");
+                naveReina = false;
                 break;
             case 3:
                 loadImage("Imagenes/nave4.png");
+                naveReina = false;
                 break;
         }
    
@@ -51,6 +57,9 @@ public class Enemigo extends Sprite {
         x -= 1; 
     }
     
+    public boolean getNaveReina(){
+        return naveReina;
+    }
 
     
     @Override
